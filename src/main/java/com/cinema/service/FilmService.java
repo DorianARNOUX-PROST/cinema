@@ -1,6 +1,8 @@
 package com.cinema.service;
 
+import com.cinema.entity.Acteur;
 import com.cinema.entity.Film;
+import com.cinema.entity.Personnage;
 import com.cinema.entity.request.AddFilmRequest;
 import com.cinema.repository.FilmRepository;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,16 @@ public class FilmService {
 
     public List<Film> getFilms(){
         return filmRepository.findAll();
+    }
+
+    public List<Personnage> getPersonnagesFromFilm(long id){
+        Film film = filmRepository.findByNoFilm(id).get(0);
+        return filmRepository.getPersonnagesFromFilm(film);
+    }
+
+    public List<Acteur> getActeursFromPersonnagesFromFilm(long id){
+        Film film = filmRepository.findByNoFilm(id).get(0);
+        return filmRepository.getActeursFromPersonnagesFromFilm(film);
     }
 
     public Film addFilm(AddFilmRequest addFilmRequest) {

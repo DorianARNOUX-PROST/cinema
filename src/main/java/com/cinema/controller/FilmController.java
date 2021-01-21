@@ -1,5 +1,7 @@
 package com.cinema.controller;
+import com.cinema.entity.Acteur;
 import com.cinema.entity.Film;
+import com.cinema.entity.Personnage;
 import com.cinema.entity.request.AddFilmRequest;
 import com.cinema.service.FilmService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,16 @@ public class FilmController {
     @GetMapping("/list")
     public List<Film> getFilms(){
         return fs.getFilms();
+    }
+
+    @GetMapping("/personnages/{id}")
+    public List<Personnage> getPersonnagesFromFilm(@PathVariable long id){
+        return fs.getPersonnagesFromFilm(id);
+    }
+
+    @GetMapping("/acteurs/{id}")
+    public List<Acteur> getActeursFromPersonnagesFromFilm(@PathVariable long id){
+        return fs.getActeursFromPersonnagesFromFilm(id);
     }
 
     @PostMapping("/add")

@@ -3,6 +3,7 @@ package com.cinema.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -41,5 +42,8 @@ public class Film {
     @Basic
     @Column(name = "code_cat", nullable = false, length = 100)
     private String codeCat;
+
+    /*@OneToMany(fetch = FetchType.LAZY, mappedBy = "film")
+    private List<Personnage> personnages;*/
 
 }

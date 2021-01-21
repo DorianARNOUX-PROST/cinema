@@ -11,11 +11,11 @@ public class Categorie {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "CodeCat", nullable = false)
+    @Column(name = "code_cat", nullable = false)
     private long codeCat;
 
     @Basic
-    @Column(name = "LibelleCat", nullable = false, length = 100)
+    @Column(name = "libelle_cat", nullable = false, length = 100)
     private String libelleCat;
 
     @Basic
