@@ -1,8 +1,10 @@
 package com.cinema.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -12,7 +14,7 @@ public class Acteur {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "no_act", nullable = false)
-    private long NoAct;
+    private long noAct;
 
     @Basic
     @Column(name = "nom_act", nullable = false, length = 100)
@@ -27,6 +29,10 @@ public class Acteur {
     private String dateNaiss;
 
     @Basic
-    @Column(name = "date_deces", nullable = true, length = 200)
+    @Column(name = "date_deces", length = 200)
     private String dateDeces;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "acteur")
+    @JsonIgnoreProperties("acteur")
+    private List<Personnage> personnages;
 }

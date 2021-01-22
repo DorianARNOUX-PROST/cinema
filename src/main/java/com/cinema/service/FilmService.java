@@ -50,4 +50,8 @@ public class FilmService {
         filmRepository.delete(film);
         return film;
     }
+
+    public List<Film> getAll() {
+        return filmRepository.findAll();
+    }
 }

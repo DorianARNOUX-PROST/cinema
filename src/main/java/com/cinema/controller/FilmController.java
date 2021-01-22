@@ -8,11 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
 @RequestMapping("/film")
+@CrossOrigin(origins = "*")
 public class FilmController {
 
     private FilmService fs;
@@ -23,6 +23,11 @@ public class FilmController {
     @GetMapping("/list")
     public List<Film> getFilms(){
         return fs.getFilms();
+    }
+
+    @GetMapping("/all")
+    public List<Film> getAll(){
+        return fs.getAll();
     }
 
     @GetMapping("/personnages/{id}")

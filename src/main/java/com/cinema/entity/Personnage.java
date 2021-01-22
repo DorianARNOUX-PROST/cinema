@@ -1,8 +1,10 @@
 package com.cinema.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -20,13 +22,20 @@ public class Personnage {
 
     @Basic
     @Column(name = "no_act", nullable = false, length = 100)
-    private int noAct;
+    private long noAct;
 
     @Basic
     @Column(name = "nom_pers", nullable = false, length = 100)
     private String nomPers;
 
-    /*@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "no_film")
-    private Film film;*/
+    @ManyToOne
+    @JsonIgnoreProperties("personnages")
+    @JoinColumn(name = "no_film", insertable = false, updatable = false)
+    private Film film;
+
+    @ManyToOne
+    @JsonIgnoreProperties("personnages")
+    @JoinColumn(name = "no_act", insertable = false, updatable = false)
+    private Acteur acteur;
+
 }

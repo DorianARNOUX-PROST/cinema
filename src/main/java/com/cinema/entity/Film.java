@@ -1,5 +1,7 @@
 package com.cinema.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -43,7 +45,18 @@ public class Film {
     @Column(name = "code_cat", nullable = false, length = 100)
     private String codeCat;
 
-    /*@OneToMany(fetch = FetchType.LAZY, mappedBy = "film")
-    private List<Personnage> personnages;*/
+    @JsonIgnoreProperties({"films", "film"})
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "film") // PERSONNAGES
+    private List<Personnage> personnages;
+
+    @ManyToOne // REALISATEUR
+    @JsonIgnoreProperties({"films", "film"})
+    @JoinColumn(name="no_rea", nullable=false, insertable = false, updatable = false)
+    private Realisateur realisateur;
+
+    @ManyToOne
+    @JsonIgnoreProperties({"films", "film"})
+    @JoinColumn(name="code_cat", nullable=false, insertable = false, updatable = false)
+    private Categorie categorie;
 
 }
