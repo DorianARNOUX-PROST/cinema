@@ -22,7 +22,8 @@ public class ActeurService {
 
     public List<Personnage> getPersonnagesFromActeur(long id){
         Acteur acteur = acteurRepository.findByNoAct(id).get(0);
-        return acteurRepository.getPersonnagesFromActeur(acteur);
+        System.out.println(acteur.getNomAct());
+        return acteurRepository.getPersonnagesFromActeur(id);
     }
 
     public List<Acteur> getFilmsFromActeur(long id){

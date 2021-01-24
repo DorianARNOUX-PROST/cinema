@@ -25,6 +25,11 @@ public class FilmController {
         return fs.getFilms();
     }
 
+    @GetMapping("/{id}")
+    public Film getFilm(@PathVariable long id){
+        return fs.getFilm(id);
+    }
+
     @GetMapping("/all")
     public List<Film> getAll(){
         return fs.getAll();

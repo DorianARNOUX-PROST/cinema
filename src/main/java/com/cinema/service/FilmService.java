@@ -54,4 +54,10 @@ public class FilmService {
     public List<Film> getAll() {
         return filmRepository.findAll();
     }
+
+    public Film getFilm(long id) {
+        List<Film> films =  filmRepository.findByNoFilm(id);
+        Film film = films.get(0);
+        return film;
+    }
 }
